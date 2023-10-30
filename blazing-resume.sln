@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "blazing-resume.models", "blazing-resume.models\blazing-resume.models.csproj", "{8AEC1963-17C2-476F-B099-B1547DB5B6E3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "blazing-resume.pdf", "blazing-resume.pdf\blazing-resume.pdf.csproj", "{2EED4657-C439-486B-906F-367DD3790C3C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "blazing-resume.web", "blazing-resume.web\blazing-resume.web.csproj", "{2E5F5692-FBDD-4C05-9BDF-B4AB79C0EF7F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{261B96DF-1DD3-4504-82BC-81BBD94648F0}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "blazing-resume.mock-and-preview", "blazing-resume.mock-and-preview\blazing-resume.mock-and-preview.csproj", "{8C5B595B-9CCD-4D00-B90E-6D2F7FC74B60}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8AEC1963-17C2-476F-B099-B1547DB5B6E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AEC1963-17C2-476F-B099-B1547DB5B6E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AEC1963-17C2-476F-B099-B1547DB5B6E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AEC1963-17C2-476F-B099-B1547DB5B6E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EED4657-C439-486B-906F-367DD3790C3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EED4657-C439-486B-906F-367DD3790C3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EED4657-C439-486B-906F-367DD3790C3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EED4657-C439-486B-906F-367DD3790C3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E5F5692-FBDD-4C05-9BDF-B4AB79C0EF7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E5F5692-FBDD-4C05-9BDF-B4AB79C0EF7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E5F5692-FBDD-4C05-9BDF-B4AB79C0EF7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E5F5692-FBDD-4C05-9BDF-B4AB79C0EF7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C5B595B-9CCD-4D00-B90E-6D2F7FC74B60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C5B595B-9CCD-4D00-B90E-6D2F7FC74B60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C5B595B-9CCD-4D00-B90E-6D2F7FC74B60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C5B595B-9CCD-4D00-B90E-6D2F7FC74B60}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0B0841A1-4D01-4048-AC0A-1B4AB6D96BC5}
+	EndGlobalSection
+EndGlobal
