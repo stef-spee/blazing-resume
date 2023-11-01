@@ -1,0 +1,24 @@
+﻿@using blazing_resume.models;
+<h3>Talen</h3>
+
+@foreach (var languageItem in Data)
+{
+    <div class="mb-2">
+        <MudTextField Label="Taal" @bind-Value="languageItem.Language" />
+    </div>
+    <div class="mb-2">
+        <MudTextField Label="Beheersing" @bind-Value="languageItem.Fluency" />
+    </div>
+}
+
+<button @onclick="AddLanguageItem">Toevoegen</button>
+
+@code {
+    [Parameter]
+    public List<LanguageProficiency> Data { get; set; }
+
+    private void AddLanguageItem()
+    {
+        Data.Add(new LanguageProficiency());
+    }
+}

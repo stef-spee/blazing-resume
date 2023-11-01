@@ -1,0 +1,55 @@
+﻿@using blazing_resume.models;
+<h3>Vrijwilligerswerk</h3>
+
+@foreach (var volunteerItem in Data)
+{
+    <div class="mb-2">
+        <MudTextField Label="Organisatie" @bind-Value="volunteerItem.Organization" />
+    </div>
+    <div class="mb-2">
+        <MudTextField Label="Positie" @bind-Value="volunteerItem.Position" />
+    </div>
+    <div class="mb-2">
+        <MudTextField Label="URL" @bind-Value="volunteerItem.Url" />
+    </div>
+    <div class="mb-2">
+        <MudDatePicker Label="Startdatum" @bind-Value="volunteerItem.StartDate" Format="yyyy-MM-dd" />
+    </div>
+    <div class="mb-2">
+        <MudDatePicker Label="Einddatum" @bind-Value="volunteerItem.EndDate" Format="yyyy-MM-dd" />
+    </div>
+    <div class="mb-2">
+        <MudTextField Label="Samenvatting" @bind-Value="volunteerItem.Summary" />
+    </div>
+    <div>
+        <h4>Hoogtepunten</h4>
+        @for (var i = 0; i < volunteerItem.Highlights.Count; i++)
+        {
+            <div class="mb-2">
+                <MudTextField Label="Hoogtepunt" @bind-Value="volunteerItem.Highlights[i]" />
+            </div>
+        }
+        <button @onclick="() => AddHighlight(volunteerItem)">Hoogtepunt Toevoegen</button>
+    </div>
+}
+
+<button @onclick="AddVolunteerItem">Toevoegen</button>
+
+@code {
+    [Parameter]
+    public List<VolunteerExperience> Data { get; set; }
+
+    private void AddVolunteerItem()
+    {
+        Data.Add(new VolunteerExperience());
+    }
+
+    private void AddHighlight(VolunteerExperience volunteerItem)
+    {
+        if (volunteerItem.Highlights == null)
+        {
+            volunteerItem.Highlights = new List<string>();
+        }
+        volunteerItem.Highlights.Add("");
+    }
+}

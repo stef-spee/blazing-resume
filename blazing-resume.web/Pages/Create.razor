@@ -1,0 +1,56 @@
+﻿@using System.Text.Json;
+@using blazing_resume.models;
+@using blazing_resume.web.Components
+
+@page "/create"
+
+<h1>Cv aanmaken</h1>
+
+<CascadingValue Value="this">
+    <BasicsComponent @bind-Data="cvData.Basics" />
+    <WorkComponent @bind-Data="cvData.Work" />
+    <VolunteerComponent @bind-Data="cvData.Volunteer" />
+    <EducationComponent @bind-Data="cvData.Education" />
+    <AwardsComponent @bind-Data="cvData.Award" />
+    <CertificatesComponent @bind-Data="cvData.Certificates" />
+    <PublicationsComponent @bind-Data="cvData.Publications" />
+    <SkillsComponent @bind-Data="cvData.Skills" />
+    <LanguagesComponent @bind-Data="cvData.Languages" />
+    <InterestsComponent @bind-Data="cvData.Interests" />
+    <ReferencesComponent @bind-Data="cvData.References" />
+    <ProjectsComponent @bind-Data="cvData.Projects" />
+</CascadingValue>
+
+<button @onclick="DisplayCv">Toon JSON</button>
+
+<div>
+    @jsonDisplay
+</div>
+
+@code {
+    private ResumeModel cvData = new ResumeModel
+    {
+        Basics = new Basics(),
+        Work = new List<WorkExperience>(),
+        Volunteer = new List<VolunteerExperience>(),
+        Education = new List<Education>(),
+        Award = new List<Award>(),
+        Certificates = new List<Certificate>(),
+        Publications = new List<Publication>(),
+        Skills = new List<Skill>(),
+        Languages = new List<LanguageProficiency>(),
+        Interests = new List<Interest>(),
+        References = new List<ReferenceContact>(),
+        Projects = new List<ProjectExperience>()
+    };
+
+    private string jsonDisplay = "";
+
+    private void DisplayCv()
+    {
+        jsonDisplay = JsonSerializer.Serialize(cvData, new JsonSerializerOptions
+        {
+            WriteIndented = true
+        });
+    }
+}

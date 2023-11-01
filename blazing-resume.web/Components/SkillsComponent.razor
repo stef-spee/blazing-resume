@@ -1,0 +1,43 @@
+﻿@using blazing_resume.models;
+<h3>Vaardigheden</h3>
+
+@foreach (var skillItem in Data)
+{
+    <div class="mb-2">
+        <MudTextField Label="Naam" @bind-Value="skillItem.Name" />
+    </div>
+    <div class="mb-2">
+        <MudTextField Label="Niveau" @bind-Value="skillItem.Level" />
+    </div>
+    <div>
+        <h4>Trefwoorden</h4>
+        @for (var i = 0; i < skillItem.Keywords.Count; i++)
+        {
+            <div class="mb-2">
+                <MudTextField Label="Trefwoord" @bind-Value="skillItem.Keywords[i]" />
+            </div>
+        }
+        <button @onclick="() => AddKeyword(skillItem)">Trefwoord Toevoegen</button>
+    </div>
+}
+
+<button @onclick="AddSkillItem">Toevoegen</button>
+
+@code {
+    [Parameter]
+    public List<Skill> Data { get; set; }
+
+    private void AddSkillItem()
+    {
+        Data.Add(new Skill());
+    }
+
+    private void AddKeyword(Skill skillItem)
+    {
+        if (skillItem.Keywords == null)
+        {
+            skillItem.Keywords = new List<string>();
+        }
+        skillItem.Keywords.Add("");
+    }
+}

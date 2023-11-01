@@ -1,0 +1,35 @@
+﻿@using blazing_resume.models;
+<h3>Persoonlijke gegevens</h3>
+
+<MudTextField Label="Naam" @bind-Value="Data.Name" />
+<MudTextField Label="Label" @bind-Value="Data.Label" />
+<MudTextField Label="E-mail" @bind-Value="Data.Email" />
+<MudTextField Label="Telefoon" @bind-Value="Data.Phone" />
+<MudTextField Label="URL" @bind-Value="Data.Url" />
+<MudTextField Label="Persoonlijk profiel" @bind-Value="Data.Summary" />
+<MudTextField Label="Adres" @bind-Value="Data.Location.Address" />
+<MudTextField Label="Postcode" @bind-Value="Data.Location.PostalCode" />
+<MudTextField Label="Stad" @bind-Value="Data.Location.City" />
+<MudTextField Label="Landcode" @bind-Value="Data.Location.CountryCode" />
+<MudTextField Label="Regio" @bind-Value="Data.Location.Region" />
+
+<h4>Profielen</h4>
+@foreach (var profile in Data.Profiles)
+{
+    <div>
+        <MudTextField Label="Netwerk" @bind-Value="profile.Network" />
+        <MudTextField Label="Gebruikersnaam" @bind-Value="profile.Username" />
+        <MudTextField Label="URL" @bind-Value="profile.Url" />
+    </div>
+}
+<button @onclick="AddProfile">Profiel Toevoegen</button>
+
+@code {
+    [Parameter]
+    public Basics Data { get; set; }
+
+    private void AddProfile()
+    {
+        Data.Profiles.Add(new Profile());
+    }
+}

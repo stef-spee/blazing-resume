@@ -1,0 +1,58 @@
+﻿@using blazing_resume.models;
+<h3>Opleiding</h3>
+
+@foreach (var educationItem in Data)
+{
+    <div class="mb-2">
+        <MudTextField Label="Instelling" @bind-Value="educationItem.Institution" />
+    </div>
+    <div class="mb-2">
+        <MudTextField Label="URL" @bind-Value="educationItem.Url" />
+    </div>
+    <div class="mb-2">
+        <MudTextField Label="Studierichting" @bind-Value="educationItem.Area" />
+    </div>
+    <div class="mb-2">
+        <MudTextField Label="Studietype" @bind-Value="educationItem.StudyType" />
+    </div>
+    <div class="mb-2">
+        <MudDatePicker Label="Startdatum" @bind-Value="educationItem.StartDate" Format="yyyy-MM-dd" />
+    </div>
+    <div class="mb-2">
+        <MudDatePicker Label="Einddatum" @bind-Value="educationItem.EndDate" Format="yyyy-MM-dd" />
+    </div>
+    <div class="mb-2">
+        <MudTextField Label="Cijfer" @bind-Value="educationItem.Score" />
+    </div>
+    <div>
+        <h4>Cursussen</h4>
+        @for (var i = 0; i < educationItem.Courses.Count; i++)
+        {
+            <div class="mb-2">
+                <MudTextField Label="Cursus" @bind-Value="educationItem.Courses[i]" />
+            </div>
+        }
+        <button @onclick="() => AddCourse(educationItem)">Cursus Toevoegen</button>
+    </div>
+}
+
+<button @onclick="AddEducationItem">Toevoegen</button>
+
+@code {
+    [Parameter]
+    public List<Education> Data { get; set; }
+
+    private void AddEducationItem()
+    {
+        Data.Add(new Education());
+    }
+
+    private void AddCourse(Education educationItem)
+    {
+        if (educationItem.Courses == null)
+        {
+            educationItem.Courses = new List<string>();
+        }
+        educationItem.Courses.Add("");
+    }
+}

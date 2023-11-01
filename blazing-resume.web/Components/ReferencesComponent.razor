@@ -1,0 +1,24 @@
+﻿@using blazing_resume.models;
+<h3>Referenties</h3>
+
+@foreach (var referenceItem in Data)
+{
+    <div class="mb-2">
+        <MudTextField Label="Naam" @bind-Value="referenceItem.Name" />
+    </div>
+    <div class="mb-2">
+        <MudTextField Label="Referentie" @bind-Value="referenceItem.Reference" />
+    </div>
+}
+
+<button @onclick="AddReferenceItem">Toevoegen</button>
+
+@code {
+    [Parameter]
+    public List<ReferenceContact> Data { get; set; }
+
+    private void AddReferenceItem()
+    {
+        Data.Add(new ReferenceContact());
+    }
+}
