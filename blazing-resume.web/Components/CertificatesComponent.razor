@@ -1,5 +1,6 @@
 ﻿@using blazing_resume.models;
-<h3>Certificaten</h3>
+
+<MudText Typo="Typo.h4" Class="mt-5">Certificaten</MudText>
 
 @foreach (var certificateItem in Data)
 {
@@ -7,7 +8,7 @@
         <MudTextField Label="Naam" @bind-Value="certificateItem.Name" />
     </div>
     <div class="mb-2">
-        <MudDatePicker Label="Datum" @bind-Value="certificateItem.Date" Format="yyyy-MM-dd" />
+        <MudDatePicker Label="Datum" @bind-Date="certificateItem.Date" />
     </div>
     <div class="mb-2">
         <MudTextField Label="Uitgevende instantie" @bind-Value="certificateItem.Issuer" />
@@ -17,7 +18,12 @@
     </div>
 }
 
-<button @onclick="AddCertificateItem">Toevoegen</button>
+<MudButton @onclick="AddCertificateItem"
+           Class="my-5"
+           Variant="Variant.Filled"
+           Color="Color.Primary">
+    Certificaat toevoegen
+</MudButton>
 
 @code {
     [Parameter]

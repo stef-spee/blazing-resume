@@ -1,5 +1,6 @@
 ﻿@using blazing_resume.models;
-<h3>Talen</h3>
+
+<MudText Typo="Typo.h4" Class="mt-5">Talen</MudText>
 
 @foreach (var languageItem in Data)
 {
@@ -11,7 +12,12 @@
     </div>
 }
 
-<button @onclick="AddLanguageItem">Toevoegen</button>
+<MudButton @onclick="AddLanguageItem"
+           Class="my-5"
+           Variant="Variant.Filled"
+           Color="Color.Primary">
+    Taal toevoegen
+</MudButton>
 
 @code {
     [Parameter]

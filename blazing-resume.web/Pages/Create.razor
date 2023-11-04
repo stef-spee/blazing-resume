@@ -1,48 +1,40 @@
 ﻿@using System.Text.Json;
 @using blazing_resume.models;
-@using blazing_resume.web.Components
+@using blazing_resume.web.Components;
 
 @page "/create"
 
-<h1>Cv aanmaken</h1>
+<MudContainer MaxWidth="MaxWidth.Large">
+    <MudText Typo="Typo.h2" Class="mt-5">Cv aanmaken</MudText>
 
-<CascadingValue Value="this">
-    <BasicsComponent @bind-Data="cvData.Basics" />
-    <WorkComponent @bind-Data="cvData.Work" />
-    <VolunteerComponent @bind-Data="cvData.Volunteer" />
-    <EducationComponent @bind-Data="cvData.Education" />
-    <AwardsComponent @bind-Data="cvData.Award" />
-    <CertificatesComponent @bind-Data="cvData.Certificates" />
-    <PublicationsComponent @bind-Data="cvData.Publications" />
-    <SkillsComponent @bind-Data="cvData.Skills" />
-    <LanguagesComponent @bind-Data="cvData.Languages" />
-    <InterestsComponent @bind-Data="cvData.Interests" />
-    <ReferencesComponent @bind-Data="cvData.References" />
-    <ProjectsComponent @bind-Data="cvData.Projects" />
-</CascadingValue>
+    <BasicsComponent Data="cvData.Basics" />
+    <WorkComponent Data="cvData.Work" />
+    <VolunteerComponent Data="cvData.Volunteer" />
+    <EducationComponent Data="cvData.Education" />
+    <AwardsComponent Data="cvData.Award" />
+    <CertificatesComponent Data="cvData.Certificates" />
+    <PublicationsComponent Data="cvData.Publications" />
+    <SkillsComponent Data="cvData.Skills" />
+    <LanguagesComponent Data="cvData.Languages" />
+    <InterestsComponent Data="cvData.Interests" />
+    <ReferencesComponent Data="cvData.References" />
+    <ProjectsComponent Data="cvData.Projects" />
 
-<button @onclick="DisplayCv">Toon JSON</button>
-
-<div>
-    @jsonDisplay
-</div>
+    <div>
+        <MudButton @onclick="DisplayCv"
+                   Class="my-5"
+                   Variant="Variant.Filled"
+                   Color="Color.Primary"
+                   Size="Size.Large">
+            Toon JSON
+        </MudButton>
+    
+        <p>@jsonDisplay</p>
+    </div>
+</MudContainer>
 
 @code {
-    private ResumeModel cvData = new ResumeModel
-    {
-        Basics = new Basics(),
-        Work = new List<WorkExperience>(),
-        Volunteer = new List<VolunteerExperience>(),
-        Education = new List<Education>(),
-        Award = new List<Award>(),
-        Certificates = new List<Certificate>(),
-        Publications = new List<Publication>(),
-        Skills = new List<Skill>(),
-        Languages = new List<LanguageProficiency>(),
-        Interests = new List<Interest>(),
-        References = new List<ReferenceContact>(),
-        Projects = new List<ProjectExperience>()
-    };
+    private ResumeModel cvData = new();
 
     private string jsonDisplay = "";
 

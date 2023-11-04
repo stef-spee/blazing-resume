@@ -1,5 +1,6 @@
 ﻿@using blazing_resume.models;
-<h3>Opleiding</h3>
+
+<MudText Typo="Typo.h4" Class="mt-5">Opleiding</MudText>
 
 @foreach (var educationItem in Data)
 {
@@ -16,27 +17,39 @@
         <MudTextField Label="Studietype" @bind-Value="educationItem.StudyType" />
     </div>
     <div class="mb-2">
-        <MudDatePicker Label="Startdatum" @bind-Value="educationItem.StartDate" Format="yyyy-MM-dd" />
+        <MudDatePicker Label="Startdatum" @bind-Date="educationItem.StartDate" />
     </div>
     <div class="mb-2">
-        <MudDatePicker Label="Einddatum" @bind-Value="educationItem.EndDate" Format="yyyy-MM-dd" />
+        <MudDatePicker Label="Einddatum" @bind-Date="educationItem.EndDate" />
     </div>
     <div class="mb-2">
         <MudTextField Label="Cijfer" @bind-Value="educationItem.Score" />
     </div>
     <div>
-        <h4>Cursussen</h4>
+        <MudText Typo="Typo.h5" Class="mt-8">Cursussen</MudText>
+
         @for (var i = 0; i < educationItem.Courses.Count; i++)
         {
             <div class="mb-2">
                 <MudTextField Label="Cursus" @bind-Value="educationItem.Courses[i]" />
             </div>
         }
-        <button @onclick="() => AddCourse(educationItem)">Cursus Toevoegen</button>
+
+        <MudButton @onclick="() => AddCourse(educationItem)"
+                   Class="my-5"
+                   Variant="Variant.Filled"
+                   Color="Color.Primary">
+            Cursus toevoegen
+        </MudButton>
     </div>
 }
 
-<button @onclick="AddEducationItem">Toevoegen</button>
+<MudButton @onclick="AddEducationItem"
+           Class="my-5"
+           Variant="Variant.Filled"
+           Color="Color.Primary">
+    Werkervaring toevoegen
+</MudButton>
 
 @code {
     [Parameter]

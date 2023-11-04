@@ -1,5 +1,6 @@
 ﻿@using blazing_resume.models;
-<h3>Werkervaring</h3>
+
+<MudText Typo="Typo.h4" Class="mt-5">Werkervaring</MudText>
 
 @foreach (var workItem in Data)
 {
@@ -10,27 +11,39 @@
         <MudTextField Label="Positie" @bind-Value="workItem.Position" />
     </div>
     <div class="mb-2">
-        <MudDatePicker Label="Startdatum" @bind-Value="workItem.StartDate" Format="yyyy-MM-dd" />
+        <MudDatePicker Label="Startdatum" @bind-Date="workItem.StartDate" />
     </div>
     <div class="mb-2">
-        <MudDatePicker Label="Einddatum" @bind-Value="workItem.EndDate" Format="yyyy-MM-dd" />
+        <MudDatePicker Label="Einddatum" @bind-Date="workItem.EndDate" />
     </div>
     <div class="mb-2">
         <MudTextField Label="Samenvatting" @bind-Value="workItem.Summary" />
     </div>
     <div>
-        <h4>Hoogtepunten</h4>
+        <MudText Typo="Typo.h5" Class="mt-8">Hoogtepunten</MudText>
+
         @for (var i = 0; i < workItem.Highlights.Count; i++)
         {
             <div class="mb-2">
                 <MudTextField Label="Hoogtepunt" @bind-Value="workItem.Highlights[i]" />
             </div>
         }
-        <button @onclick="() => AddHighlight(workItem)">Hoogtepunt Toevoegen</button>
+
+        <MudButton @onclick="() => AddHighlight(workItem)"
+                   Class="my-5"
+                   Variant="Variant.Filled"
+                   Color="Color.Primary">
+            Hoogtepunt toevoegen
+        </MudButton>
     </div>
 }
 
-<button @onclick="AddWorkItem">Toevoegen</button>
+<MudButton @onclick="AddWorkItem"
+           Class="my-5"
+           Variant="Variant.Filled"
+           Color="Color.Primary">
+    Werkervaring toevoegen
+</MudButton>
 
 @code {
     [Parameter]

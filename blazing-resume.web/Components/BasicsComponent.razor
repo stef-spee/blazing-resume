@@ -1,5 +1,6 @@
 ﻿@using blazing_resume.models;
-<h3>Persoonlijke gegevens</h3>
+
+<MudText Typo="Typo.h4" Class="mt-5">Persoonlijke gegevens</MudText>
 
 <MudTextField Label="Naam" @bind-Value="Data.Name" />
 <MudTextField Label="Label" @bind-Value="Data.Label" />
@@ -13,7 +14,8 @@
 <MudTextField Label="Landcode" @bind-Value="Data.Location.CountryCode" />
 <MudTextField Label="Regio" @bind-Value="Data.Location.Region" />
 
-<h4>Profielen</h4>
+<MudText Typo="Typo.h5" Class="mt-8">Profielen</MudText>
+
 @foreach (var profile in Data.Profiles)
 {
     <div>
@@ -22,7 +24,15 @@
         <MudTextField Label="URL" @bind-Value="profile.Url" />
     </div>
 }
-<button @onclick="AddProfile">Profiel Toevoegen</button>
+
+<MudButton 
+    @onclick="AddProfile" 
+    Class="my-5" 
+    Variant="Variant.Filled" 
+    Color="Color.Primary"
+>
+    Profiel toevoegen
+</MudButton>
 
 @code {
     [Parameter]

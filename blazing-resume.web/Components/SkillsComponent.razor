@@ -1,5 +1,6 @@
 ﻿@using blazing_resume.models;
-<h3>Vaardigheden</h3>
+
+<MudText Typo="Typo.h4" Class="mt-5">Vaardigheden</MudText>
 
 @foreach (var skillItem in Data)
 {
@@ -10,18 +11,30 @@
         <MudTextField Label="Niveau" @bind-Value="skillItem.Level" />
     </div>
     <div>
-        <h4>Trefwoorden</h4>
+        <MudText Typo="Typo.h5" Class="mt-8">Trefwoorden</MudText>
+
         @for (var i = 0; i < skillItem.Keywords.Count; i++)
         {
             <div class="mb-2">
                 <MudTextField Label="Trefwoord" @bind-Value="skillItem.Keywords[i]" />
             </div>
         }
-        <button @onclick="() => AddKeyword(skillItem)">Trefwoord Toevoegen</button>
+
+        <MudButton @onclick="() => AddKeyword(skillItem)"
+                   Class="my-5"
+                   Variant="Variant.Filled"
+                   Color="Color.Primary">
+            Trefwoord toevoegen
+        </MudButton>
     </div>
 }
 
-<button @onclick="AddSkillItem">Toevoegen</button>
+<MudButton @onclick="AddSkillItem"
+           Class="my-5"
+           Variant="Variant.Filled"
+           Color="Color.Primary">
+    Skill toevoegen
+</MudButton>
 
 @code {
     [Parameter]

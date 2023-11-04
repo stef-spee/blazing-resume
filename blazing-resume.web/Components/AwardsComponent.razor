@@ -1,6 +1,6 @@
 ﻿@using blazing_resume.models;
 
-<h3>Prestaties</h3>
+<MudText Typo="Typo.h4" Class="mt-5">Prestaties</MudText>
 
 @foreach (var awardItem in Data)
 {
@@ -8,7 +8,7 @@
         <MudTextField Label="Titel" @bind-Value="awardItem.Title" />
     </div>
     <div class="mb-2">
-        <MudDatePicker Label="Datum" @bind-Value="awardItem.Date" Format="yyyy-MM-dd" />
+        <MudDatePicker Label="Datum" @bind-Date="awardItem.Date" />
     </div>
     <div class="mb-2">
         <MudTextField Label="Toekennende instantie" @bind-Value="awardItem.Awarder" />
@@ -18,7 +18,12 @@
     </div>
 }
 
-<button @onclick="AddAwardItem">Toevoegen</button>
+<MudButton @onclick="AddAwardItem"
+           Class="my-5"
+           Variant="Variant.Filled"
+           Color="Color.Primary">
+    Prestatie toevoegen
+</MudButton>
 
 @code {
     [Parameter]
