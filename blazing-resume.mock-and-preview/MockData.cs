@@ -1,7 +1,5 @@
 ﻿using blazing_resume.models;
 using Bogus;
-using System;
-using System.Net;
 
 namespace blazing_resume.mock;
 
@@ -77,7 +75,7 @@ public static class MockData
                 .RuleFor(o => o.EndDate, f => f.Date.Past())
                 .RuleFor(o => o.Summary, f => f.Lorem.Paragraph())
                 .RuleFor(o => o.Highlights, f => new List<string>() { f.Lorem.Sentence() })
-                .GenerateBetween(1,2);
+                .GenerateBetween(1, 2);
 
     private static List<Education> GetEducations() =>
             new Faker<Education>()
@@ -90,7 +88,7 @@ public static class MockData
             .RuleFor(o => o.EndDate, f => f.Date.Past())
             .RuleFor(o => o.Score, f => f.Random.Decimal(6.0m, 10.0m).ToString())
             .RuleFor(o => o.Courses, f => new List<string> { f.Lorem.Sentence() })
-            .GenerateBetween(1,2);
+            .GenerateBetween(1, 2);
 
     private static List<Award> GetAwards() =>
             new Faker<Award>()
