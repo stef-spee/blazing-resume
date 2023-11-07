@@ -1,21 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net7.0</TargetFramework>
-    <RootNamespace>blazing_resume.mock_and_preview</RootNamespace>
+    <RootNamespace>blazing_resume.pdf</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Bogus" Version="34.0.2" />
     <PackageReference Include="QuestPDF" Version="2023.10.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\blazing-resume.models\blazing-resume.models.csproj" />
-    <ProjectReference Include="..\blazing-resume.pdf\blazing-resume.pdf.csproj" />
   </ItemGroup>
 
 </Project>
