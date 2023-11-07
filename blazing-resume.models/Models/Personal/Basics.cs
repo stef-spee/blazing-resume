@@ -9,6 +9,6 @@ public sealed class Basics
     public string Phone { get; set; }
     public string Url { get; set; }
     public string Summary { get; set; }
-    public Location Location { get; set; }
-    public List<Profile> Profiles { get; set; }
+    public Location Location { get; set; } = new();
+    public List<Profile> Profiles { get; set; } = new();
 }

@@ -1,0 +1,45 @@
+﻿@using blazing_resume.models;
+
+<MudText Typo="Typo.h4" Class="mt-5">Persoonlijke gegevens</MudText>
+
+<MudTextField Label="Naam" @bind-Value="Data.Name" />
+<MudTextField Label="Label" @bind-Value="Data.Label" />
+<MudTextField Label="E-mail" @bind-Value="Data.Email" />
+<MudTextField Label="Telefoon" @bind-Value="Data.Phone" />
+<MudTextField Label="URL" @bind-Value="Data.Url" />
+<MudTextField Label="Persoonlijk profiel" @bind-Value="Data.Summary" />
+<MudTextField Label="Adres" @bind-Value="Data.Location.Address" />
+<MudTextField Label="Postcode" @bind-Value="Data.Location.PostalCode" />
+<MudTextField Label="Stad" @bind-Value="Data.Location.City" />
+<MudTextField Label="Landcode" @bind-Value="Data.Location.CountryCode" />
+<MudTextField Label="Regio" @bind-Value="Data.Location.Region" />
+
+<MudText Typo="Typo.h5" Class="mt-8">Profielen</MudText>
+
+@foreach (var profile in Data.Profiles)
+{
+    <div>
+        <MudTextField Label="Netwerk" @bind-Value="profile.Network" />
+        <MudTextField Label="Gebruikersnaam" @bind-Value="profile.Username" />
+        <MudTextField Label="URL" @bind-Value="profile.Url" />
+    </div>
+}
+
+<MudButton 
+    @onclick="AddProfile" 
+    Class="my-5" 
+    Variant="Variant.Filled" 
+    Color="Color.Primary"
+>
+    Profiel toevoegen
+</MudButton>
+
+@code {
+    [Parameter]
+    public Basics Data { get; set; }
+
+    private void AddProfile()
+    {
+        Data.Profiles.Add(new Profile());
+    }
+}

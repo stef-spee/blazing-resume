@@ -12,4 +12,8 @@
     <PackageReference Include="MudBlazor" Version="6.11.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\blazing-resume.models\blazing-resume.models.csproj" />
+  </ItemGroup>
+
 </Project>

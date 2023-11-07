@@ -1,5 +1,7 @@
 ﻿using blazing_resume.models;
 using Bogus;
+using System;
+using System.Net;
 
 namespace blazing_resume.mock;
 

@@ -1,0 +1,68 @@
+﻿@using blazing_resume.models;
+
+<MudText Typo="Typo.h4" Class="mt-5">Vrijwilligerswerk</MudText>
+
+@foreach (var volunteerItem in Data)
+{
+    <div class="mb-2">
+        <MudTextField Label="Organisatie" @bind-Value="volunteerItem.Organization" />
+    </div>
+    <div class="mb-2">
+        <MudTextField Label="Positie" @bind-Value="volunteerItem.Position" />
+    </div>
+    <div class="mb-2">
+        <MudTextField Label="URL" @bind-Value="volunteerItem.Url" />
+    </div>
+    <div class="mb-2">
+        <MudDatePicker Label="Startdatum" @bind-Date="volunteerItem.StartDate" />
+    </div>
+    <div class="mb-2">
+        <MudDatePicker Label="Einddatum" @bind-Date="volunteerItem.EndDate" />
+    </div>
+    <div class="mb-2">
+        <MudTextField Label="Samenvatting" @bind-Value="volunteerItem.Summary" />
+    </div>
+    <div>
+        <MudText Typo="Typo.h5" Class="mt-8">Hoogtepunten</MudText>
+
+        @for (var i = 0; i < volunteerItem.Highlights.Count; i++)
+        {
+            <div class="mb-2">
+                <MudTextField Label="Hoogtepunt" @bind-Value="volunteerItem.Highlights[i]" />
+            </div>
+        }
+
+        <MudButton @onclick="() => AddHighlight(volunteerItem)"
+                   Class="my-5"
+                   Variant="Variant.Filled"
+                   Color="Color.Primary">
+            Hoogtepunt toevoegen
+        </MudButton>
+    </div>
+}
+
+<MudButton @onclick="AddVolunteerItem"
+           Class="my-5"
+           Variant="Variant.Filled"
+           Color="Color.Primary">
+    Vrijwilligerswerk toevoegen
+</MudButton>
+
+@code {
+    [Parameter]
+    public List<VolunteerExperience> Data { get; set; }
+
+    private void AddVolunteerItem()
+    {
+        Data.Add(new VolunteerExperience());
+    }
+
+    private void AddHighlight(VolunteerExperience volunteerItem)
+    {
+        if (volunteerItem.Highlights == null)
+        {
+            volunteerItem.Highlights = new List<string>();
+        }
+        volunteerItem.Highlights.Add("");
+    }
+}

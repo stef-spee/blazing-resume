@@ -1,0 +1,36 @@
+﻿@using blazing_resume.models;
+
+<MudText Typo="Typo.h4" Class="mt-5">Certificaten</MudText>
+
+@foreach (var certificateItem in Data)
+{
+    <div class="mb-2">
+        <MudTextField Label="Naam" @bind-Value="certificateItem.Name" />
+    </div>
+    <div class="mb-2">
+        <MudDatePicker Label="Datum" @bind-Date="certificateItem.Date" />
+    </div>
+    <div class="mb-2">
+        <MudTextField Label="Uitgevende instantie" @bind-Value="certificateItem.Issuer" />
+    </div>
+    <div class="mb-2">
+        <MudTextField Label="URL" @bind-Value="certificateItem.Url" />
+    </div>
+}
+
+<MudButton @onclick="AddCertificateItem"
+           Class="my-5"
+           Variant="Variant.Filled"
+           Color="Color.Primary">
+    Certificaat toevoegen
+</MudButton>
+
+@code {
+    [Parameter]
+    public List<Certificate> Data { get; set; }
+
+    private void AddCertificateItem()
+    {
+        Data.Add(new Certificate());
+    }
+}

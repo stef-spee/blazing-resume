@@ -1,0 +1,48 @@
+﻿@using System.Text.Json;
+@using blazing_resume.models;
+@using blazing_resume.web.Components;
+
+@page "/create"
+
+<MudContainer MaxWidth="MaxWidth.Large">
+    <MudText Typo="Typo.h2" Class="mt-5">Cv aanmaken</MudText>
+
+    <BasicsComponent Data="cvData.Basics" />
+    <WorkComponent Data="cvData.Work" />
+    <VolunteerComponent Data="cvData.Volunteer" />
+    <EducationComponent Data="cvData.Education" />
+    <AwardsComponent Data="cvData.Award" />
+    <CertificatesComponent Data="cvData.Certificates" />
+    <PublicationsComponent Data="cvData.Publications" />
+    <SkillsComponent Data="cvData.Skills" />
+    <LanguagesComponent Data="cvData.Languages" />
+    <InterestsComponent Data="cvData.Interests" />
+    <ReferencesComponent Data="cvData.References" />
+    <ProjectsComponent Data="cvData.Projects" />
+
+    <div>
+        <MudButton @onclick="DisplayCv"
+                   Class="my-5"
+                   Variant="Variant.Filled"
+                   Color="Color.Primary"
+                   Size="Size.Large">
+            Toon JSON
+        </MudButton>
+    
+        <p>@jsonDisplay</p>
+    </div>
+</MudContainer>
+
+@code {
+    private ResumeModel cvData = new();
+
+    private string jsonDisplay = "";
+
+    private void DisplayCv()
+    {
+        jsonDisplay = JsonSerializer.Serialize(cvData, new JsonSerializerOptions
+        {
+            WriteIndented = true
+        });
+    }
+}

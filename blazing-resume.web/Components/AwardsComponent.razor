@@ -1,0 +1,36 @@
+﻿@using blazing_resume.models;
+
+<MudText Typo="Typo.h4" Class="mt-5">Prestaties</MudText>
+
+@foreach (var awardItem in Data)
+{
+    <div class="mb-2">
+        <MudTextField Label="Titel" @bind-Value="awardItem.Title" />
+    </div>
+    <div class="mb-2">
+        <MudDatePicker Label="Datum" @bind-Date="awardItem.Date" />
+    </div>
+    <div class="mb-2">
+        <MudTextField Label="Toekennende instantie" @bind-Value="awardItem.Awarder" />
+    </div>
+    <div class="mb-2">
+        <MudTextField Label="Samenvatting" @bind-Value="awardItem.Summary" />
+    </div>
+}
+
+<MudButton @onclick="AddAwardItem"
+           Class="my-5"
+           Variant="Variant.Filled"
+           Color="Color.Primary">
+    Prestatie toevoegen
+</MudButton>
+
+@code {
+    [Parameter]
+    public List<Award> Data { get; set; }
+
+    private void AddAwardItem()
+    {
+        Data.Add(new Award());
+    }
+}
