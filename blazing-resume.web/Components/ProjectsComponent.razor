@@ -1,0 +1,66 @@
+﻿@using blazing_resume.models;
+
+<MudText Typo="Typo.h4" Class="mt-5">Projecten</MudText>
+
+@foreach (var projectItem in Data)
+{
+    <div class="mb-2">
+        <MudTextField Label="Naam" @bind-Value="projectItem.Name" />
+    </div>
+    <div class="mb-2">
+        <MudDatePicker Label="Startdatum" @bind-Date="projectItem.StartDate" />
+    </div>
+    <div class="mb-2">
+        <MudDatePicker Label="Einddatum" @bind-Date="projectItem.EndDate" />
+    </div>
+    <div class="mb-2">
+        <MudTextField Label="Beschrijving" @bind-Value="projectItem.Description" />
+    </div>
+    <div>
+        <MudText Typo="Typo.h5" Class="mt-8">Hoogtepunten</MudText>
+
+        @for (var i = 0; i < projectItem.Highlights.Count; i++)
+        {
+            <div class="mb-2">
+                <MudTextField Label="Hoogtepunt" @bind-Value="projectItem.Highlights[i]" />
+            </div>
+        }
+
+        <MudButton @onclick="() => AddHighlight(projectItem)"
+                   Class="my-5"
+                   Variant="Variant.Filled"
+                   Color="Color.Primary">
+            Hoogtepunt toevoegen
+        </MudButton>
+
+    </div>
+    <div class="mb-2">
+        <MudTextField Label="URL" @bind-Value="projectItem.Url" />
+    </div>
+}
+
+<MudButton @onclick="AddProjectItem"
+           Class="my-5"
+           Variant="Variant.Filled"
+           Color="Color.Primary">
+    Project toevoegen
+</MudButton>
+
+@code {
+    [Parameter]
+    public List<ProjectExperience> Data { get; set; }
+
+    private void AddProjectItem()
+    {
+        Data.Add(new ProjectExperience());
+    }
+
+    private void AddHighlight(ProjectExperience projectItem)
+    {
+        if (projectItem.Highlights == null)
+        {
+            projectItem.Highlights = new List<string>();
+        }
+        projectItem.Highlights.Add("");
+    }
+}

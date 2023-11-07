@@ -1,0 +1,53 @@
+﻿@using blazing_resume.models;
+
+<MudText Typo="Typo.h4" Class="mt-5">Interesses</MudText>
+
+@foreach (var interestItem in Data)
+{
+    <div class="mb-2">
+        <MudTextField Label="Naam" @bind-Value="interestItem.Name" />
+    </div>
+    <div>
+        <MudText Typo="Typo.h5" Class="mt-8">Trefwoorden</MudText>
+
+        @for (var i = 0; i < interestItem.Keywords.Count; i++)
+        {
+            <div class="mb-2">
+                <MudTextField Label="Trefwoord" @bind-Value="interestItem.Keywords[i]" />
+            </div>
+        }
+
+        <MudButton @onclick="() => AddKeyword(interestItem)"
+                   Class="my-5"
+                   Variant="Variant.Filled"
+                   Color="Color.Primary">
+            Trefwoord toevoegen
+        </MudButton>
+    </div>
+}
+
+<MudButton @onclick="AddInterestItem"
+           Class="my-5"
+           Variant="Variant.Filled"
+           Color="Color.Primary">
+    Interesse toevoegen
+</MudButton>
+
+@code {
+    [Parameter]
+    public List<Interest> Data { get; set; }
+
+    private void AddInterestItem()
+    {
+        Data.Add(new Interest());
+    }
+
+    private void AddKeyword(Interest interestItem)
+    {
+        if (interestItem.Keywords == null)
+        {
+            interestItem.Keywords = new List<string>();
+        }
+        interestItem.Keywords.Add("");
+    }
+}

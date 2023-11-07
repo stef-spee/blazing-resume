@@ -1,0 +1,65 @@
+﻿@using blazing_resume.models;
+
+<MudText Typo="Typo.h4" Class="mt-5">Werkervaring</MudText>
+
+@foreach (var workItem in Data)
+{
+    <div class="mb-2">
+        <MudTextField Label="Naam" @bind-Value="workItem.Name" />
+    </div>
+    <div class="mb-2">
+        <MudTextField Label="Positie" @bind-Value="workItem.Position" />
+    </div>
+    <div class="mb-2">
+        <MudDatePicker Label="Startdatum" @bind-Date="workItem.StartDate" />
+    </div>
+    <div class="mb-2">
+        <MudDatePicker Label="Einddatum" @bind-Date="workItem.EndDate" />
+    </div>
+    <div class="mb-2">
+        <MudTextField Label="Samenvatting" @bind-Value="workItem.Summary" />
+    </div>
+    <div>
+        <MudText Typo="Typo.h5" Class="mt-8">Hoogtepunten</MudText>
+
+        @for (var i = 0; i < workItem.Highlights.Count; i++)
+        {
+            <div class="mb-2">
+                <MudTextField Label="Hoogtepunt" @bind-Value="workItem.Highlights[i]" />
+            </div>
+        }
+
+        <MudButton @onclick="() => AddHighlight(workItem)"
+                   Class="my-5"
+                   Variant="Variant.Filled"
+                   Color="Color.Primary">
+            Hoogtepunt toevoegen
+        </MudButton>
+    </div>
+}
+
+<MudButton @onclick="AddWorkItem"
+           Class="my-5"
+           Variant="Variant.Filled"
+           Color="Color.Primary">
+    Werkervaring toevoegen
+</MudButton>
+
+@code {
+    [Parameter]
+    public List<WorkExperience> Data { get; set; }
+
+    private void AddWorkItem()
+    {
+        Data.Add(new WorkExperience());
+    }
+
+    private void AddHighlight(WorkExperience workItem)
+    {
+        if (workItem.Highlights == null)
+        {
+            workItem.Highlights = new List<string>();
+        }
+        workItem.Highlights.Add("");
+    }
+}

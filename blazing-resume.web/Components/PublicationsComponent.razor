@@ -1,0 +1,39 @@
+﻿@using blazing_resume.models;
+
+<MudText Typo="Typo.h4" Class="mt-5">Publicaties</MudText>
+
+@foreach (var publicationItem in Data)
+{
+    <div class="mb-2">
+        <MudTextField Label="Naam" @bind-Value="publicationItem.Name" />
+    </div>
+    <div class="mb-2">
+        <MudTextField Label="Uitgever" @bind-Value="publicationItem.Publisher" />
+    </div>
+    <div class="mb-2">
+        <MudDatePicker Label="Datum van uitgave" @bind-Date="publicationItem.ReleaseDate" />
+    </div>
+    <div class="mb-2">
+        <MudTextField Label="URL" @bind-Value="publicationItem.Url" />
+    </div>
+    <div class="mb-2">
+        <MudTextField Label="Samenvatting" @bind-Value="publicationItem.Summary" />
+    </div>
+}
+
+<MudButton @onclick="AddPublicationItem"
+           Class="my-5"
+           Variant="Variant.Filled"
+           Color="Color.Primary">
+    Publicatie toevoegen
+</MudButton>
+
+@code {
+    [Parameter]
+    public List<Publication> Data { get; set; }
+
+    private void AddPublicationItem()
+    {
+        Data.Add(new Publication());
+    }
+}
