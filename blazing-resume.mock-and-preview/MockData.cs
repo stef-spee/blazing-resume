@@ -1,5 +1,6 @@
 ﻿using blazing_resume.models;
 using Bogus;
+using System.Net;
 
 namespace blazing_resume.mock;
 
@@ -27,12 +28,20 @@ public static class MockData
                 .CustomInstantiator(_ => new Basics())
                 .RuleFor(o => o.Name, f => f.Person.FullName)
                 .RuleFor(o => o.Email, f => f.Person.Email)
+                .RuleFor(o => o.Label, "Professional data model")
                 .RuleFor(o => o.Location, _ => GetLocation())
                 .RuleFor(o => o.Profiles, _ => GetProfiles())
                 .RuleFor(o => o.Phone, f => f.Person.Phone)
                 .RuleFor(o => o.Url, f => f.Person.Website)
-                .RuleFor(o => o.Summary, "I like coffee and cookies.")
-                .RuleFor(o => o.Image, f => f.Image.LoremFlickrUrl())
+                .RuleFor(o => o.Summary, f => f.Lorem.Paragraph())
+                .RuleFor(o => o.Image, f => {
+                    byte[] img;
+                    using (HttpClient webClient = new())
+                    {
+                        img = webClient.GetByteArrayAsync(f.Image.LoremFlickrUrl()).Result;
+                    }
+                    return img;
+                })
                 .Generate();
     }
 
@@ -82,7 +91,7 @@ public static class MockData
             .CustomInstantiator(_ => new Education())
             .RuleFor(o => o.Institution, f => f.Company.CompanyName())
             .RuleFor(o => o.Url, f => f.Internet.Url())
-            .RuleFor(o => o.Area, f => f.Lorem.Words(2).ToString())
+            .RuleFor(o => o.Area, f => string.Concat(f.Lorem.Words(2)))
             .RuleFor(o => o.StudyType, f => f.Lorem.Word())
             .RuleFor(o => o.StartDate, f => f.Date.Past())
             .RuleFor(o => o.EndDate, f => f.Date.Past())
