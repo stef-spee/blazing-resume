@@ -72,7 +72,7 @@ public static class MockData
                 .RuleFor(o => o.EndDate, f => f.Date.Past())
                 .RuleFor(o => o.Summary, f => f.Lorem.Paragraph())
                 .RuleFor(o => o.Highlights, f => new List<string>() { f.Lorem.Sentence() })
-                .GenerateBetween(2, 4);
+                .GenerateBetween(4, 9);
 
     private static List<VolunteerExperience> GetVolunteerExperiences() =>
             new Faker<VolunteerExperience>()

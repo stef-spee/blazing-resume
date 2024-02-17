@@ -56,80 +56,108 @@ public sealed class Modern_Clean : IDocument
         .PaddingHorizontal(15)
         .Column(sidebar =>
         {
-            sidebar.Spacing(30);
+        sidebar.Spacing(30);
 
+        if (_model.Basics.Image != null && _model.Basics.Image.Length > 0)
+        {
             sidebar.Item()
                .PaddingTop(30)
                .AlignCenter()
                .MaxHeight(150)
                .Image(_model.Basics.Image);
+        }
+        else
+        {
+            sidebar.Item().PaddingTop(20);
+        }
 
-            sidebar.Item()
-               .AlignCenter()
-               .Column(column =>
-               {
-                   column.Item()
-                         .AlignCenter()
-                         .Text(_model.Basics.Name)
-                         .FontSize(16)
-                         .Black();
-                   column.Item()
-                         .AlignCenter()
-                         .Text(_model.Basics.Label)
-                         .Italic()
-                         .FontSize(10);
-               });
+        sidebar.Item()
+           .AlignCenter()
+           .Column(column =>
+           {
+               column.Item()
+                     .AlignCenter()
+                     .Text(_model.Basics.Name)
+                     .FontSize(16)
+                     .Black();
+               column.Item()
+                     .AlignCenter()
+                     .Text(_model.Basics.Label)
+                     .Italic()
+                     .FontSize(10);
+           });
 
-            sidebar.Item()
-                .Text(_model.Basics.Summary);
+        sidebar.Item()
+            .Text(_model.Basics.Summary);
 
-            sidebar.Item()
+        sidebar.Item()
+            .AlignLeft()
+            .Column(column =>
+            {
+                column.Item()
+                      .Text("Contacts")
+                      .Underline()
+                      .FontSize(16)
+                      .Bold();
+
+                column.Item().Column(contacts =>
+                {
+                    contacts.Item()
+                            .PaddingTop(5)
+                            .Text("Location")
+                            .Light()
+                            .FontSize(9);
+                    contacts.Item()
+                            .Text($"{_model.Basics.Location.Address}, {_model.Basics.Location.City}")
+                            .Italic();
+
+                    contacts.Item()
+                            .PaddingTop(5)
+                            .Text("Phone")
+                            .Light()
+                            .FontSize(9);
+                    contacts.Item()
+                            .Text(_model.Basics.Phone)
+                            .Italic();
+
+                    contacts.Item()
+                            .PaddingTop(5)
+                            .Text("E-mail")
+                            .Light()
+                            .FontSize(9);
+                    contacts.Item()
+                            .Text(_model.Basics.Email)
+                            .Italic();
+
+                    //contacts.Item()
+                    //        .PaddingTop(5)
+                    //        .Text("LinkedIn")
+                    //        .Light()
+                    //        .FontSize(9);
+                });
+            });
+
+        sidebar.Item()
                 .AlignLeft()
                 .Column(column =>
                 {
                     column.Item()
-                          .Text("Contacts")
-                          .Underline()
-                          .FontSize(16)
-                          .Bold();
+                        .PaddingBottom(5)
+                        .Text("Skills")
+                        .Underline()
+                        .FontSize(16)
+                        .Bold();
 
-                    column.Item().Column(contacts =>
+                    column.Item().Column(skills =>
                     {
-                        contacts.Item()
-                                .PaddingTop(5)
-                                .Text("Location")
-                                .Light()
-                                .FontSize(9);
-                        contacts.Item()
-                                .Text($"{_model.Basics.Location.Address}, {_model.Basics.Location.City}")
-                                .Italic();
-
-                        contacts.Item()
-                                .PaddingTop(5)
-                                .Text("Phone")
-                                .Light()
-                                .FontSize(9);
-                        contacts.Item()
-                                .Text(_model.Basics.Phone)
-                                .Italic();
-
-                        contacts.Item()
-                                .PaddingTop(5)
-                                .Text("E-mail")
-                                .Light()
-                                .FontSize(9);
-                        contacts.Item()
-                                .Text(_model.Basics.Email)
-                                .Italic();
-                        contacts.Item()
-                                .PaddingTop(5)
-                                .Text("E-mail")
-                                .Light()
-                                .FontSize(9);
+                        foreach (var skill in _model.Skills)
+                        {
+                            skills.Item().Text(skill.Name);
+                        }
                     });
                 });
 
-            sidebar.Item()
+        sidebar.Item()
                 .AlignLeft()
                 .Column(column =>
                 {
@@ -199,7 +227,6 @@ public sealed class Modern_Clean : IDocument
 
     void ComposeWorkExperiences(IContainer container)
     {
-        //container.DefaultTextStyle(x => x.FontColor(Colors.White))
         container.PaddingTop(50)
         .PaddingHorizontal(35)
         .Column(column =>

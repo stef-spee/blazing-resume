@@ -11,10 +11,10 @@ a lot of free alternatives.
 In order to work on this project you need the following:
 
 ### DotNet
-Currently the project is build using .NET 7, so install the proper version [using this link](https://dotnet.microsoft.com/en-us/download)
+Currently the project is build using .NET 8 (8.0.201), so please download and install the proper version from [Microsoft's download page](https://dotnet.microsoft.com/en-us/download)
 or alternatively you could use the following command:
 
-	winget install Microsoft.DotNet.SDK.7
+	winget install Microsoft.DotNet.SDK.8
 
 ### QuestPDF.Preview
 We use the QuestPDF library to generate the resumé in PDF format, as you create templates using code its greatly recomended 
@@ -22,15 +22,27 @@ to install the QuestPDF.Preview tool in order to make use of hot-reload capabili
 
 	dotnet tool install --global QuestPDF.Previewer
 
+#### DotNet runtime for QuestPDF.Preview
+Currently the QuestPDF.Preview tool needs the .NET 6 runtime to start, either download the runtime or the SDK.
+	
+	dotnet install Microsoft.DotNet.SDK.6
+
+or
+
+	dotnet install Microsoft.DotNet.Runtime.6
+
 ### Wasm-tools workload
 You'll need the wasm-tools workload in order to build the blazing-resume.web project. You can easily install these with the following 
-command: (for .net 7 projects you need the net6 tools)
+command:
 
-	dotnet workload install wasm-tools-net6
+	dotnet workload install wasm-tools
+
+If, for some reason, you are not able to build and run the project, it might be that your .NET SDK version is newer than the project's target version.
+[Please see this section in Microsoft Learn for more info](https://learn.microsoft.com/en-us/aspnet/core/blazor/tooling?view=aspnetcore-8.0&pivots=windows#net-webassembly-build-tools)
 
 ## Getting started
 After installing the prerequisites its time to restore the projects, run:
 
 	dotnet restore
 
-Now you should be ready to go. If you have any suggestions, improvements or questions, please visit the [project on Github](https://github.com/stef-spee/blazing-resume)
+You should be ready to go now. If you have any suggestions, improvements or questions, please visit the [blazing-resume project on Github](https://github.com/stef-spee/blazing-resume)
