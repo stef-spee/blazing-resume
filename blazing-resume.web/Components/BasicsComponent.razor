@@ -1,17 +1,17 @@
 ﻿@using blazing_resume.models;
 
-<MudText Typo="Typo.h4" Class="mt-5">Persoonlijke gegevens</MudText>
+<MudText Typo="Typo.h4" Class="mt-5">Personal info</MudText>
 
 <MudTextField Label="Naam" @bind-Value="Data.Name" />
 <MudTextField Label="Label" @bind-Value="Data.Label" />
 <MudTextField Label="E-mail" @bind-Value="Data.Email" />
-<MudTextField Label="Telefoon" @bind-Value="Data.Phone" />
-<MudTextField Label="URL" @bind-Value="Data.Url" />
-<MudTextField Label="Persoonlijk profiel" @bind-Value="Data.Summary" />
+<MudTextField Label="Telefoonnummer" @bind-Value="Data.Phone" />
+<MudTextField Label="Website" @bind-Value="Data.Url" />
+<MudTextField Label="Profiel" @bind-Value="Data.Summary" />
 <MudTextField Label="Adres" @bind-Value="Data.Location.Address" />
 <MudTextField Label="Postcode" @bind-Value="Data.Location.PostalCode" />
 <MudTextField Label="Stad" @bind-Value="Data.Location.City" />
-<MudTextField Label="Landcode" @bind-Value="Data.Location.CountryCode" />
+<MudTextField Label="Land" @bind-Value="Data.Location.CountryCode" />
 <MudTextField Label="Regio" @bind-Value="Data.Location.Region" />
 
 <MudText Typo="Typo.h5" Class="mt-8">Profielen</MudText>
